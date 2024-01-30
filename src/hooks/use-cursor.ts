@@ -11,7 +11,7 @@ type UseLoopCursorPosition = {
   inactivityTimeout?: number;
 };
 
-type inactivityTimeout = { inactivityTimeout: number };
+type InactivityTimeout = { inactivityTimeout: number };
 
 export function useAnimateCursor({
   scale,
@@ -41,7 +41,7 @@ export function useAnimateCursor({
 
 export function useHideInactiveCursor({
   inactivityTimeout,
-}: inactivityTimeout) {
+}: InactivityTimeout) {
   const { x, y } = useCursorPosition();
   const status = useCursorActivityStatus({ inactivityTimeout });
   useAnimateCursor({});
@@ -102,9 +102,7 @@ export function useLoopCursorPosition({
   }, [isEnabled, status, x, y]);
 }
 
-function useCursorActivityStatus({
-  inactivityTimeout: inactivityTimeout,
-}: inactivityTimeout) {
+function useCursorActivityStatus({ inactivityTimeout }: InactivityTimeout) {
   const [status, setStatus] = useState<'active' | 'inactive'>('active');
   const { x, y } = useCursorPosition();
 
